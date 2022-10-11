@@ -1,10 +1,10 @@
 qtype,question,atype,answer
-reading,How many mappings are there in the visualization in total?,number,12
-reading,How many classes is "SessionChair" in Ontology A mapped to?,number,2
-reading,What is "AcademicEvent" in Ontology A mapped to in Ontology B?,class,Scientific_Event
-reading,Does this mapping from "AcademiaOrganization" (in Ontology A) to "Academic_Institution" (in Ontology B) exists in the visualization?,y/n,No
-validation,Is "Attendee" in Ontology A correctly mapped?,y/n,No
-validation,Do you think the mapping between "AcademicEvent" and "Scientific_Event" presented in the visualization is correct?,y/n,Yes
-creation,"Author" in Ontology A is mapped to an incorrect pair. Which class in Ontology B should it be mapped to instead?,class,Paper_Author
-creation,"ConferenceDinner" in Ontology A has no mapping shown in the visualization. Can it be mapped to another class in Ontology B?,y/n,Yes
-creation,"ConferenceDinner" in Ontology A actually has a mapping pair but not shown. Which class in Ontology B should it be mapped to?,class,Conference_Banquet
+identifying,How many mappings are shown in the visualization in total?,number,11
+indentifying,How many classes is "Author" in the left ontology mapped to?,number,2
+identifying,What is "SlideSet" in the left ontology mapped to in the right ontology?",class,Document
+identifying,Does the mapping from "Possible_Reviewer" (in the right ontology) to Author (in the left ontology) exist in the visualization?,y/n,No
+validation,"OrganizationalMeeting" (in the left ontology) and "Conference" (in the right ontology) share the same parent class.,y/n,No
+validation,"Do you think "AcademicEvent" in the left ontology is correctly mapped?,y/n,Yes
+creation,"Author" in the left ontology is mapped to an incorrect pair. Which class in the right ontology should it be mapped to instead?,class,Paper_Author
+creation,There is a missing mapping in the visualization. "Presenter" in the left ontology should be mapped to what class in the right ontology?,class,Presenter
+creation,"Workshop" in the left ontology has no mapping shown in the visualization. Can it be mapped to another class in the right ontology?,y/n,Yes

@@ -3,58 +3,58 @@ var taskDatasets = {
     domain: "conference",
     tasks: [
       {
-        "qtype": "reading",
-        "question": "How many mappings are there in the visualization in total?",
+        "qtype": "identifying",
+        "question": "How many mappings are shown in the visualization in total?",
         "atype": "number",
-        "answer": "12"
+        "answer": "11"
       },
       {
-        "qtype": "reading",
-        "question": "How many classes is \"SessionChair\" in Ontology A mapped to?",
+        "qtype": "identifying",
+        "question": "How many classes is \"Author\" in the left ontology mapped to?",
         "atype": "number",
         "answer": "2"
       },
       {
-        "qtype": "reading",
-        "question": "What is \"AcademicEvent\" in Ontology A mapped to in Ontology B?",
+        "qtype": "identifying",
+        "question": "What is \"SlideSet\" in the left ontology mapped to in the right ontology?",
         "atype": "class",
-        "answer": "Scientific_Event"
+        "answer": "Document"
       },
       {
-        "qtype": "reading",
-        "question": "Does this mapping from \"AcademiaOrganization\" (in Ontology A) to \"Academic_Institution\" (in Ontology B) exists in the visualization?",
+        "qtype": "identifying",
+        "question": "Does the mapping from \"Possible_Reviewer\" (in the right ontology) to \"Author\" (in the left ontology) exist in the visualization?",
         "atype": "y/n",
         "answer": "No"
       },
       {
         "qtype": "validation",
-        "question": "Is \"Attendee\" in Ontology A correctly mapped?",
+        "question": "\"OrganizationalMeeting\" (in the left ontology) and \"Conference\" (in the right ontology) share the same parent class.",
         "atype": "y/n",
-        "answer": "No"
+        "answer": "Yes"
       },
       {
         "qtype": "validation",
-        "question": "Do you think the mapping between \"AcademicEvent\" and \"Scientific_Event\" presented in the visualization is correct?",
+        "question": "Do you think \"AcademicEvent\" in the left ontology is correctly mapped?",
         "atype": "y/n",
         "answer": "Yes"
       },
       {
         "qtype": "creation",
-        "question": "\"Author\" in Ontology A is mapped to an incorrect pair. Which class in Ontology B should it be mapped to instead?",
+        "question": "\"Author\" in the left ontology is mapped to an incorrect pair. Which class in the right ontology should it be mapped to instead?",
         "atype": "class",
         "answer": "Paper_Author"
       },
       {
         "qtype": "creation",
-        "question": "\"ConferenceDinner\" in Ontology A has no mapping shown in the visualization. Can it be mapped to another class in Ontology B?",
-        "atype": "y/n",
-        "answer": "Yes"
+        "question": "There is a missing mapping in the visualization. \"Presenter\" in the left ontology should be mapped to what class in the right ontology?",
+        "atype": "class",
+        "answer": "Presenter"
       },
       {
         "qtype": "creation",
-        "question": "\"ConferenceDinner\" in Ontology A actually has a mapping pair but not shown. Which class in Ontology B should it be mapped to?",
-        "atype": "class",
-        "answer": "Conference_Banquet"
+        "question": "\"Workshop\" in the left ontology has no mapping shown in the visualization. Can it be mapped to another class in the right ontology?",
+        "atype": "y/n",
+        "answer": "Yes"
       }
     ]
   },
@@ -62,58 +62,58 @@ var taskDatasets = {
     domain: "anatomy",
     tasks: [
       {
-        "qtype": "reading",
-        "question": "How many mappings are there in the visualization in total?",
+        "qtype": "identifying",
+        "question": "How many mappings are shown in the visualization in total?",
         "atype": "number",
-        "answer": "12"
+        "answer": "10"
       },
       {
-        "qtype": "reading",
-        "question": "How many classes is \"Bone\" in Ontology A mapped to?",
+        "qtype": "identifying",
+        "question": "How many classes is \"Skin\" in the left ontology mapped to?",
         "atype": "number",
-        "answer": "0"
+        "answer": "1"
       },
       {
-        "qtype": "reading",
-        "question": "What is \"Cartilage\" in Ontology A mapped to in Ontology B?",
+        "qtype": "identifying",
+        "question": "What is \"Viscera\" in the left ontology mapped to in the right ontology?",
+        "atype": "class",
+        "answer": "visceral organ system"
+      },
+      {
+        "qtype": "identifying",
+        "question": "Does the mapping from \"muscle\" (in the right ontology) to \"Heart\" (in the left ontology) exist in the visualization?",
+        "atype": "y/n",
+        "answer": "No"
+      },
+      {
+        "qtype": "validation",
+        "question": "\"Saliva\" (in the left ontology) and \"choroid\" (in the right ontology) share the same parent class.",
+        "atype": "y/n",
+        "answer": "No"
+      },
+      {
+        "qtype": "validation",
+        "question": "Do you think \"Cartilage\" in the left ontology is correctly mapped?",
+        "atype": "y/n",
+        "answer": "No"
+      },
+      {
+        "qtype": "creation",
+        "question": "\"Cartilage\" in the left ontology is mapped to an incorrect pair. Which class in the right ontology should it be mapped to instead?",
         "atype": "class",
         "answer": "cartilage"
       },
       {
-        "qtype": "reading",
-        "question": "Does this mapping from \"Leg\" (in Ontology A) to \"leg\" (in Ontology B) exists in the visualization?",
-        "atype": "y/n",
-        "answer": "No"
+        "qtype": "creation",
+        "question": "There is a missing mapping in the visualization. \"Blood\" in the left ontology should be mapped to what class in the right ontology?",
+        "atype": "class",
+        "answer": "blood"
       },
       {
-        "qtype": "validation",
-        "question": "Is \"Mucus\" in Ontology A correctly mapped?",
-        "atype": "y/n",
-        "answer": "No"
-      },
-      {
-        "qtype": "validation",
-        "question": "Do you think the mapping between \"Body_Fluid_or_Substance\" and \"body fluid/substance\" presented in the visualization is correct?",
+        "qtype": "creation",
+        "question": "\"Joint\" in the left ontology has no mapping shown in the visualization. Can it be mapped to another class in the right ontology?",
         "atype": "y/n",
         "answer": "Yes"
-      },
-      {
-        "qtype": "creation",
-        "question": "\"Skull\" in Ontology A is mapped to an incorrect pair. Which class in Ontology B should it be mapped to instead?",
-        "atype": "class",
-        "answer": "cranium"
-      },
-      {
-        "qtype": "creation",
-        "question": "\"Viscera\" in Ontology A has no mapping shown in the visualization. Can it be mapped to another class in Ontology B?",
-        "atype": "y/n",
-        "answer": "Yes"
-      },
-      {
-        "qtype": "creation",
-        "question": "\"Viscera\" in Ontology A actually has a mapping pair but not shown. Which class in Ontology B should it be mapped to?",
-        "atype": "class",
-        "answer": "visceral organ system"
       }
     ]
   }

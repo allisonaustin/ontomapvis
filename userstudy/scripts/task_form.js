@@ -3,14 +3,14 @@ const DomainCode = {
     ANATOMY: 1
 };
 
-var selectedDomain = DomainCode.CONFERENCE;
-var selectedTask;
+//var selectedDomain = DomainCode.CONFERENCE;
+var taskset;
+var tasknum=0;
 
 window.addEventListener('load', function() {
     console.log("Task: Ready to generate form!");
-
+    
     //Data
-    var taskset;
     switch(selectedDomain) {
         case DomainCode.CONFERENCE:
             taskset = taskDatasets.conference;
@@ -18,17 +18,44 @@ window.addEventListener('load', function() {
         case DomainCode.ANATOMY:
             taskset = taskDatasets.anatomy;
     }
-    selectedTask = assignOneTask(taskset);
-
+    selectedTask = assignOneTask(taskset, tasknum);
     generateTaskForm(selectedTask);
+    tasknum++;
 });
 
-function assignOneTask(taskset) {
+function setTask(task) {
+    this.selectedTask = task;
+}
+
+function setDomain(domain) {
+    this.selectedDomain = domain;
+}
+
+function setTarget(target) {
+    this.target = target;
+}
+
+function assignOneTask(taskset, n) {
     console.log(`Task: '${taskset.domain}' domain selected as a task dataset.`);
     //TODO: Control this randomly assigned task to a proper one
-    let rd = Math.floor(Math.random() * taskset.tasks.length);
-    console.log('Task: random number ' + rd);
-    return taskset.tasks[rd];
+    //let rd = Math.floor(Math.random() * taskset.tasks.length);
+    //console.log('Task: random number ' + rd);
+    return taskset.tasks[n];
+}
+
+function nextTask() {
+    var valid = validateForm();
+    if(valid) {
+        if(tasknum==taskset.tasks.length) {
+            document.getElementById("submit").type="submit";
+            document.getElementById("taskForm").action=target;
+        }
+        selectedTask = assignOneTask(taskset, tasknum++);
+        generateTaskForm(selectedTask);  
+        return valid;
+    } else {
+        nextTask();
+    }
 }
 
 function generateTaskForm(task) {
@@ -41,9 +68,10 @@ function generateTaskForm(task) {
 
     //Show answer input
     //3 types of answer: 1) y/n, 2) number, 3) class
-    var answerDiv = $('#taskDiv #answerDiv');
+    //var answerDiv = $('#taskDiv #answerDiv');
+    var answerDiv = document.getElementById("answerDiv");
     if (task.atype == "y/n") {
-        answerDiv.append(`
+        answerDiv.innerHTML=(`
             <select class="task-answer form-control" id="inputSelect" name="taskSelect" required>
                 <option selected>Choose...</option>
                 <option value="yes">Yes</option>
@@ -51,11 +79,11 @@ function generateTaskForm(task) {
             </select>
         `);
     } else if (task.atype == "number") {
-        answerDiv.append(`
+        answerDiv.innerHTML=(`
             <input type=number id="inputNumber" name="taskNumber" class="form-control" placeholder="a number" required>
         `);
     } else if (task.atype == "class") {
-        answerDiv.append(`
+        answerDiv.innerHTML=(`
             <input type=text id="inputText" name="taskClassName" class="form-control" minlength="3" placeholder="a class name" required>
         `);
     }
@@ -85,9 +113,8 @@ function validateForm() {
             return false;
         }
     }
-    
     //TODO: validate other condition like 1) some interaction with the visualization..
-
+    $('#validateMsg').html("");
     return true;
 }
 

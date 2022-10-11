@@ -1,10 +1,10 @@
 qtype,question,atype,answer
-reading,How many mappings are there in the visualization in total?,number,12
-reading,How many classes is "Bone" in Ontology A mapped to?,number,0
-reading,What is "Cartilage" in Ontology A mapped to in Ontology B?,class,cartilage
-reading,Does this mapping from "Leg" (in Ontology A) to "leg" (in Ontology B) exists in the visualization?,y/n,No
-validation,Is "Mucus" in Ontology A correctly mapped?,y/n,No
-validation,Do you think the mapping between "Body_Fluid_or_Substance" and "body fluid/substance" presented in the visualization is correct?,y/n,Yes
-creation,"Skull" in Ontology A is mapped to an incorrect pair. Which class in Ontology B should it be mapped to instead?,class,cranium
-creation,"Viscera" in Ontology A has no mapping shown in the visualization. Can it be mapped to another class in Ontology B?,y/n,Yes
-creation,"Viscera" in Ontology A actually has a mapping pair but not shown. Which class in Ontology B should it be mapped to?,class,visceral organ system
+identifying,How many mappings are shown in the visualization in total?,number,10
+indentifying,How many classes is "Skin" in the left ontology mapped to?,number,1
+identifying,What is "Viscera" in the left ontology mapped to in the right ontology?",class,visceral organ system
+identifying,Does the mapping from "muscle" (in the right ontology) to "Heart" (in the left ontology) exist in the visualization?,y/n,No
+validation,"Saliva" (in the left ontology) and "choroid" (in the right ontology) share the same parent class.,y/n,No
+validation,"Do you think "Cartilage" in the left ontology is correctly mapped?,y/n,No
+creation,"Cartilage" in the left ontology is mapped to an incorrect pair. Which class in the right ontology should it be mapped to instead?,class,cartilage
+creation,There is a missing mapping in the visualization. "Blod" in the left ontology should be mapped to what class in the right ontology?,class,blood
+creation,"Joint" in the left ontology has no mapping shown in the visualization. Can it be mapped to another class in the right ontology?,y/n,Yes
