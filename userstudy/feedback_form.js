@@ -106,7 +106,7 @@ function createRadioGroup(inputName, scale) {
  * @param {*} data 
  */
 function drawReactionForm(data) {
-    const limit = 5;
+    //const limit = 5;
 
     //Draw reaction cards
     var cardsDiv = $('<div class="cards-div"></div>');
@@ -133,11 +133,11 @@ function drawReactionForm(data) {
         var label = checkbox.parent('label');
         
         //Set limit
-        if ($('input.word-checkbox:checked').length > limit) {
+        /* if ($('input.word-checkbox:checked').length > limit) {
             $(this).prop('checked', false);
-            console.log('word selection limit 5');
+            //console.log('word selection limit 5');
             return;
-        }
+        }*/
         
         //Sync with button
         if (checkbox.is(':checked')) {
@@ -153,13 +153,14 @@ function drawReactionForm(data) {
         $('#chosen-words').val(words.join(', '));
     });
 
-    //Create text input for reason
-    var reasonDiv = $(`
-        <div class="reason-div form-group">
+    //Creating text input for participant to enter their ID
+    /* 
+    var labelDiv = $(`
+        <div class="label-div form-group">
             <label for="formGroupExampleInput">${data.q2}</label>
-            <textarea class="form-control" id="reasonTextarea" rows="3" name="reason" placeholder="reasons of your choices"></textarea>
+            <textarea class="form-control" id="pTextarea" rows="1" name="id" required></textarea>
         </div>`);
-    $('#form-content').append(reasonDiv);
+    $('#form-content').append(labelDiv); */
 }
 
 function shuffle(array) {
@@ -170,16 +171,16 @@ function shuffle(array) {
 }
 
 function validateForm() {
-    switch(selectedForm.formcode) {
+    /* switch(selectedForm.formcode) {
         case FormCode.REACTION:
             //Should select 5 words
             if ($('input.word-checkbox:checked').length < 5) {
                 $('#validateMsg').html("Select 5 words");
                 return false;
-            }
-            //Should fill out reason
-            if ($('#reasonTextarea').val().length == 0) {
-                $('#validateMsg').html("Fill out the reason");
+            } 
+            //Should fill out id
+            if ($('#pTextarea').val().length == 0) {
+                $('#validateMsg').html("Please provide your ID");
                 return false;
             }
             //TODO: Validate the reason textarea.. if
@@ -189,6 +190,7 @@ function validateForm() {
         case FormCode.WORKLOAD:
             //TODO: validate the scale form
             break;
-    }
+            
+    }*/
     return true;
 }

@@ -1,10 +1,10 @@
 qtype,question,atype,answer
 identifying,How many mappings are shown in the visualization in total?,number,11
-indentifying,How many classes is "Author" in the left ontology mapped to?,number,2
+indentifying,How many classes is "Author" in the left ontology mapped to?,number,1
 identifying,What is "SlideSet" in the left ontology mapped to in the right ontology?",class,Document
-identifying,Does the mapping from "Possible_Reviewer" (in the right ontology) to Author (in the left ontology) exist in the visualization?,y/n,No
-validation,"OrganizationalMeeting" (in the left ontology) and "Conference" (in the right ontology) share the same parent class.,y/n,No
-validation,"Do you think "AcademicEvent" in the left ontology is correctly mapped?,y/n,Yes
-creation,"Author" in the left ontology is mapped to an incorrect pair. Which class in the right ontology should it be mapped to instead?,class,Paper_Author
-creation,There is a missing mapping in the visualization. "Presenter" in the left ontology should be mapped to what class in the right ontology?,class,Presenter
-creation,"Workshop" in the left ontology has no mapping shown in the visualization. Can it be mapped to another class in the right ontology?,y/n,Yes
+identifying,Does the mapping from "Author" (in the left ontology) to "Possible_Reviewer" (in the right ontology) exist in the visualization?,class,No
+validation,,class,No
+validation,"Is "AcademicEvent" in the left ontology is correctly mapped?,class,Yes
+creation,"SecurityTopic"-->"Research_Topic" Are there any other mappings that should be created between the given ontology pair but are currently absent from the visualization?,class,Yes
+creation,Can "Workshop" be mapped to another class in the right ontology?,class,Yes
+creation,Which class could "Workshop" be mapped to in the right ontology?,class,Workshop

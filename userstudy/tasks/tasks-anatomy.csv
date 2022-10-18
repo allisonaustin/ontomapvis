@@ -2,9 +2,9 @@ qtype,question,atype,answer
 identifying,How many mappings are shown in the visualization in total?,number,10
 indentifying,How many classes is "Skin" in the left ontology mapped to?,number,1
 identifying,What is "Viscera" in the left ontology mapped to in the right ontology?",class,visceral organ system
-identifying,Does the mapping from "muscle" (in the right ontology) to "Heart" (in the left ontology) exist in the visualization?,y/n,No
-validation,"Saliva" (in the left ontology) and "choroid" (in the right ontology) share the same parent class.,y/n,No
-validation,"Do you think "Cartilage" in the left ontology is correctly mapped?,y/n,No
-creation,"Cartilage" in the left ontology is mapped to an incorrect pair. Which class in the right ontology should it be mapped to instead?,class,cartilage
-creation,There is a missing mapping in the visualization. "Blod" in the left ontology should be mapped to what class in the right ontology?,class,blood
-creation,"Joint" in the left ontology has no mapping shown in the visualization. Can it be mapped to another class in the right ontology?,y/n,Yes
+identifying,Does the mapping from "Heart" (in the left ontology) to "muscle" (in the right ontology) exist in the visualization?,class,No
+validation,,class,No
+validation,"Is "Cartilage" in the left ontology is correctly mapped?,class,No
+creation,"Urinary_System_Part"-->"muscle". Are there any other mappings that should be created between the given ontology pair but are currently absent from the visualization?,class,Yes
+creation,Can "Joint" be mapped to another class in the right ontology?,class,Yes
+creation,Which class could "Joint" be mapped to in the right ontology?,class,joint

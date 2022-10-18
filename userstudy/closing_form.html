@@ -21,9 +21,9 @@
             <br><br>
             <p>Please enter your participant ID below and notify the researcher that you have completed your tasks.</p>
             <div class="input-group input-group-lg mb-3" style="width:250px; margin:0 auto;">
-                <input type="text" class="form-control" id="participant_id" value="">
+                <input type="text" class="form-control" onkeydown="return (event.keyCode!=13);" id="participant_id" value="">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" onclick="submit()">Enter</button>
+                    <input type="submit" class="btn btn-outline-secondary" form="feedbackForm" onclick="submit()"></input>
                 </div>
             </div>
             <p id="msg" class="font_color_primary"></p>

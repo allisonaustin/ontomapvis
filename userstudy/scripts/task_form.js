@@ -31,6 +31,10 @@ function setDomain(domain) {
     this.selectedDomain = domain;
 }
 
+function setVis(vis) {
+    this.vis = vis;
+}
+
 function setTarget(target) {
     this.target = target;
 }
@@ -46,9 +50,11 @@ function assignOneTask(taskset, n) {
 function nextTask() {
     var valid = validateForm();
     if(valid) {
+        // saveData();
         if(tasknum==taskset.tasks.length) {
             document.getElementById("submit").type="submit";
             document.getElementById("taskForm").action=target;
+            downloadLink.click();
         }
         selectedTask = assignOneTask(taskset, tasknum++);
         generateTaskForm(selectedTask);  
@@ -80,11 +86,11 @@ function generateTaskForm(task) {
         `);
     } else if (task.atype == "number") {
         answerDiv.innerHTML=(`
-            <input type=number id="inputNumber" name="taskNumber" class="form-control" placeholder="a number" required>
+            <input type=number id="inputNumber" name="taskNumber" class="form-control" min="0" onkeydown="return (event.keyCode!=13);" required>
         `);
     } else if (task.atype == "class") {
         answerDiv.innerHTML=(`
-            <input type=text id="inputText" name="taskClassName" class="form-control" minlength="3" placeholder="a class name" required>
+            <input type=text id="inputText" name="taskClassName" class="form-control" onkeydown="return (event.keyCode!=13);" autocomplete="off" required>
         `);
     }
     
@@ -106,6 +112,9 @@ function validateForm() {
         if ($('#answerDiv #inputNumber').val().length == 0) {
             $('#validateMsg').html("Complete the task.");
             return false;
+        } else if ($('#answerDiv #inputNumber').val() < 0) {
+            $('#validateMsg').html("Answer cannot be negative.");
+            return false;
         }
     } else if (selectedTask.atype == "class") {
         if ($('#answerDiv #inputText').val().length < 3) {
@@ -117,6 +126,40 @@ function validateForm() {
     $('#validateMsg').html("");
     return true;
 }
+
+function saveData() {
+    var csvData = new Array();
+    //var downloadLink = document.createElement("a");
+    // visualization
+    csvData[1] = this.vis;
+    // domain
+    csvData[2] = selectedDomain;
+    // qtype
+    csvData[3] = selectedTask.qtype;
+    // question
+    csvData[4] = selectedTask.question;
+    // user_answer
+    if(selectedTask.atype=="number") {
+        csvData[5] = $('#answerDiv #inputNumber').val();
+    } else if(selectedTask.atype=="class") {
+        csvData[5] = $('#answerDiv #inputText').val();
+    }
+    // correct
+    if (selectedTask.atype=="number")
+        if(csvData[5] == selectedTask.answer) csvData[6] = 1;
+        else csvData[6] = 0;
+    else if(selectedTask.atype=="class") {
+        if(csvData[5].toLowerCase() == selectedTask.answer.toLowerCase()) csvData[6] = 1;
+        else csvData[6] = 0;
+    }
+    // p_id
+    csvData[7] = "p";
+    
+    window.open('data:text/csv;charset=utf-8' + csvData.join(','));
+
+    console.log('Data added successfully');
+}
+
 
 // //Trying to load data from csv file using PapaParse.. not working yet
 // $.getScript("../../libs/papaparse.min.js", function() {

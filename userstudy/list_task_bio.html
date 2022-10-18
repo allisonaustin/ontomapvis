@@ -17,8 +17,9 @@
     <script src="scripts/task_form.js"></script>
     <script> 
         const selectedDomain = 1;
-        const target = "closing_form.html";
+        const target = "feedback_form.html";
         setDomain(selectedDomain);
+        setVis("baseline");
         setTarget(target);
     </script>
 
@@ -60,7 +61,7 @@
                 <div id="answerDiv"></div>
             </div>
         <!-- Finish Button -->
-            <input type="button" id="submit" onclick="return nextTask();" class="btn btn-primary" value="Next Task">
+            <input type="button" id="submit" onclick="return nextTask();" onkeydown="return (event.keyCode!=13);" class="btn btn-primary" value="Next Task">
             <p id="validateMsg"></p></form>
         </form>
 
