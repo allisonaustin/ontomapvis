@@ -6,6 +6,7 @@ const DomainCode = {
 //var selectedDomain = DomainCode.CONFERENCE;
 var taskset;
 var tasknum=0;
+var csvData = new Array(11);
 
 window.addEventListener('load', function() {
     console.log("Task: Ready to generate form!");
@@ -50,14 +51,15 @@ function assignOneTask(taskset, n) {
 function nextTask() {
     var valid = validateForm();
     if(valid) {
-        // saveData();
+        saveData();
         if(tasknum==taskset.tasks.length) {
             document.getElementById("submit").type="submit";
             document.getElementById("taskForm").action=target;
-            downloadLink.click();
+            // downloading data
+            window.open('data:text/csv;charset=utf-8' + csvData.join(','));
         }
         selectedTask = assignOneTask(taskset, tasknum++);
-        generateTaskForm(selectedTask);  
+        generateTaskForm(selectedTask);
         return valid;
     } else {
         nextTask();
@@ -117,7 +119,7 @@ function validateForm() {
             return false;
         }
     } else if (selectedTask.atype == "class") {
-        if ($('#answerDiv #inputText').val().length < 3) {
+        if ($('#answerDiv #inputText').val().length < 1) {
             $('#validateMsg').html("Complete the task.");
             return false;
         }
@@ -128,34 +130,35 @@ function validateForm() {
 }
 
 function saveData() {
-    var csvData = new Array();
-    //var downloadLink = document.createElement("a");
+    csvData[tasknum+1] = new Array();
     // visualization
-    csvData[1] = this.vis;
+    csvData[tasknum+1][0] = this.vis;
     // domain
-    csvData[2] = selectedDomain;
+    csvData[tasknum+1][1] = selectedDomain;
     // qtype
-    csvData[3] = selectedTask.qtype;
+    csvData[tasknum+1][2] = selectedTask.qtype;
     // question
-    csvData[4] = selectedTask.question;
+    csvData[tasknum+1][3] = selectedTask.question;
     // user_answer
     if(selectedTask.atype=="number") {
-        csvData[5] = $('#answerDiv #inputNumber').val();
+        csvData[tasknum+1][4] = $('#answerDiv #inputNumber').val();
     } else if(selectedTask.atype=="class") {
-        csvData[5] = $('#answerDiv #inputText').val();
+        csvData[tasknum+1][4] = $('#answerDiv #inputText').val();
     }
     // correct
     if (selectedTask.atype=="number")
-        if(csvData[5] == selectedTask.answer) csvData[6] = 1;
-        else csvData[6] = 0;
+        if(csvData[tasknum+1][4] == selectedTask.answer) csvData[tasknum+1][5] = 1;
+        else csvData[tasknum+1][5] = 0;
     else if(selectedTask.atype=="class") {
-        if(csvData[5].toLowerCase() == selectedTask.answer.toLowerCase()) csvData[6] = 1;
-        else csvData[6] = 0;
+        if(csvData[tasknum+1][4].toLowerCase() == selectedTask.answer.toLowerCase()) csvData[tasknum+1][5] = 1;
+        else csvData[tasknum+1][5] = 0;
     }
     // p_id
-    csvData[7] = "p";
+    csvData[tasknum+1][6] = "p1";
     
-    window.open('data:text/csv;charset=utf-8' + csvData.join(','));
+    // window.open('data:text/csv;charset=utf-8' + csvData.join(','));
+    csvData[tasknum+1].join(',');
+    csvData[tasknum+1] += "\n";
 
     console.log('Data added successfully');
 }
