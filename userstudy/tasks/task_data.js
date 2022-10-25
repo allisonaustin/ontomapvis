@@ -3,13 +3,13 @@ var taskDatasets = {
     domain: "conference",
     tasks: [
       {
-        "qtype": "identifying",
+        "qtype": "identifying", // correct mapping
         "question": "How many mappings are shown in the visualization in total?",
         "atype": "number",
         "answer": "10"
       },
       {
-        "qtype": "identifying", // multiple inheritance
+        "qtype": "identifying", // correct mapping - multiple inheritance
         "question": "How many classes is \"Author\" in the left ontology mapped to?",
         "atype": "number",
         "answer": "2"
@@ -92,9 +92,9 @@ var taskDatasets = {
         "answer": "No"
       },
       {
-        "qtype": "creation", // missing mapping
+        "qtype": "identifying", // missing mapping
         "question": "Can \"Joint\" be mapped to another class in the right ontology?",
-        "atype": "class",
+        "atype": "y/n",
         "answer": "Yes"
       },
       {
@@ -110,7 +110,13 @@ var taskDatasets = {
         "answer": "cranium"
       },
       {
-        "qtype": "creation", // incorrect mapping
+        "qtype": "validation", // incorrect mapping
+        "question": "\"Urinary_System_Part\" is mapped to \"muscle\". Is this a correct mapping?",
+        "atype": "y/n",
+        "answer": "No"
+      },
+      {
+        "qtype": "validation", // incorrect mapping
         "question": "\"Cheek\" in the left ontology is mapped to \"cuticle\" in the right ontology. Is this a correct mapping?",
         "atype": "y/n",
         "answer": "No"
@@ -122,13 +128,19 @@ var taskDatasets = {
         "answer": "Yes"
       },
       {
+        "qtype": "validation", // incorrect mapping
+        "question": "Is the mapping from \"Mucus\" in the left ontology to \"nasal mucus\" in the right ontology correct?",
+        "atype": "y/n",
+        "answer": "No"
+      },
+      {
         "qtype": "creation", // missing mapping
         "question": " What class can \"Lip\" in the left ontology be mapped to in the right ontology?",
         "atype": "class",
         "answer": "Lip"
       },
       {
-        "qtype": "creation", // missing mapping
+        "qtype": "identifying", // missing mapping
         "question": "Is there a mapping that should exist between \”Arm\” in the left ontology to another class in the right ontology?",
         "atype": "y/n",
         "answer": "Yes"
