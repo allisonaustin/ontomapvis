@@ -6,6 +6,9 @@
     <title>OntoMapVis: Done</title>
     <!-- <link id="favicon" rel="shortcut icon" href=""/> -->
 
+    <!-- script -->
+    <script src="feedback_form.js"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- CSS -->
@@ -23,13 +26,10 @@
             <div class="input-group input-group-lg mb-3" style="width:250px; margin:0 auto;">
                 <input type="text" class="form-control" onkeydown="return (event.keyCode!=13);" id="participant_id" value="">
                 <div class="input-group-append">
-                    <input type="submit" class="btn btn-outline-secondary" form="feedbackForm" onclick="submit()"></input>
+                    <input type="submit" class="btn btn-outline-secondary" form="feedbackForm"></input>
                 </div>
             </div>
             <p id="msg" class="font_color_primary"></p>
-            <script>
-                function submit() {}
-            </script>
         </div>
         
     </div>

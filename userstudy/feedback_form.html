@@ -20,7 +20,7 @@
 
 <body class="text-unselectable p-4">
     <div class="content container-fluid">
-        <form id="feedbackForm" action="closing_form.html" onsubmit="return validateForm();">
+        <form id="feedbackForm" onsubmit="return validateForm();">
             <div class="h2">Your Feedback</div>
             <hr class="mb-4">
             <section id="form-board" class="mx-2">
@@ -37,7 +37,7 @@
             </section>
             <div id="form-submit-section" class="mt-4 text-center">
                 <hr>
-                <input type="button" onclick="window.location.href='closing_form.html'" class="btn btn-primary" value="Next">
+                <input type="button" onclick="saveResponse(); closeWindow();" class="btn btn-primary" value="Finish">
                 <p id="validateMsg"></p>
             </div>
         </form>

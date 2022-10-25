@@ -149,7 +149,6 @@ function drawReactionForm(data) {
         //list of words
         var checkedboxes = $('input.word-checkbox:checked').toArray();
         var words = checkedboxes.map(c => c.value);
-        console.log(words);
         $('#chosen-words').val(words.join(', '));
     });
 
@@ -168,6 +167,24 @@ function shuffle(array) {
       let j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+}
+
+function saveResponse() {
+    var csvData = new Array();
+    let c = 1;
+    var checkedboxes = $('input.word-checkbox:checked').toArray();
+    var words = checkedboxes.map(c => c.value);
+    console.log(words);
+    for (let i=0; i<words.length; i++) {
+        csvData[c] = words.at(i);
+        c++;
+    }
+    window.open('data:text/csv;charset=utf-8' + csvData.join(','));
+    //window.close();
+}
+
+function closeWindow() {
+    window.close();
 }
 
 function validateForm() {

@@ -8,6 +8,25 @@
   user-select: none;
 }
 
+#domain-options {
+  margin-bottom: 10px;
+}
+
+#conf-domain {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#anatomy-domain {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#p_id {
+  width: 120px;
+  margin-bottom: 15px;
+}
+
 .content {
   max-width: 1100px;
   margin: auto;

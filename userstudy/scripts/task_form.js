@@ -6,23 +6,36 @@ const DomainCode = {
 //var selectedDomain = DomainCode.CONFERENCE;
 var taskset;
 var tasknum=0;
-var csvData = new Array(11);
+var d1;
+var d2;
+var csvData;
+var secondDomain;
 
 window.addEventListener('load', function() {
     console.log("Task: Ready to generate form!");
+
+    csvData = new Array(20);
+    getDomainOrder();
+    selectedDomain = d1;
+    initCSV(csvData);
     
     //Data
-    switch(selectedDomain) {
-        case DomainCode.CONFERENCE:
-            taskset = taskDatasets.conference;
-            break;
-        case DomainCode.ANATOMY:
-            taskset = taskDatasets.anatomy;
+    taskset = getTaskset(selectedDomain);
+    if(selectedDomain==0) 
+    {
+        setDataset(dataset1);
+    } else {
+        setDataset(dataset2);
     }
+
     selectedTask = assignOneTask(taskset, tasknum);
     generateTaskForm(selectedTask);
     tasknum++;
 });
+
+function initCSV(csvData) {
+    this.csvData = csvData;
+}
 
 function setTask(task) {
     this.selectedTask = task;
@@ -36,8 +49,37 @@ function setVis(vis) {
     this.vis = vis;
 }
 
-function setTarget(target) {
-    this.target = target;
+function getDomainOrder() {
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  var firstDomain = urlParams.get('first-domain');
+  if(firstDomain=='0') 
+  {
+      d1 = 0;
+      d2 = 1;
+  } else if(firstDomain=='1')
+  {
+      d1 = 1;
+      d2 = 0;
+  }
+}
+
+function getParticipant() {
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  return urlParams.get('participantID');
+}
+
+function getTaskset(selectedDomain) {
+    switch(selectedDomain) {
+        case DomainCode.CONFERENCE:
+            taskset = taskDatasets.conference;
+            break;
+        case DomainCode.ANATOMY:
+            taskset = taskDatasets.anatomy;
+            break;
+    }
+    return taskset;
 }
 
 function assignOneTask(taskset, n) {
@@ -52,11 +94,33 @@ function nextTask() {
     var valid = validateForm();
     if(valid) {
         saveData();
-        if(tasknum==taskset.tasks.length) {
-            document.getElementById("submit").type="submit";
-            document.getElementById("taskForm").action=target;
-            // downloading data
-            window.open('data:text/csv;charset=utf-8' + csvData.join(','));
+        if(tasknum==taskset.tasks.length) { // switching domain and taskset
+            if(!secondDomain) {
+                tasknum = 0;
+                setDomain(d2);
+                taskset = getTaskset(this.selectedDomain);
+                // clearing svg div
+                if(this.vis == "baseline") document.getElementById("baseline-svg").replaceChildren([]);
+                else document.getElementById("matrix-svg").replaceChildren("");
+                if(this.selectedDomain==0) 
+                {
+                    setDataset(dataset1);
+                } else {
+                    setDataset(dataset2);
+                }
+                if(this.vis == "baseline") drawBaselineSvg();
+                else drawMatrixSvg();
+                secondDomain = true;
+            }
+            else {
+                // downloading data
+                window.open('data:text/csv;charset=utf-8' + csvData.join(','));
+                document.getElementById("submit").type="submit";
+                document.getElementById("taskForm").action = "/tasks/blank_form.html";
+                return valid;
+            }
+        } else if(tasknum == taskset.tasks.length-1 && secondDomain) {
+            document.getElementById("submit").value="Finish";
         }
         selectedTask = assignOneTask(taskset, tasknum++);
         generateTaskForm(selectedTask);
@@ -88,11 +152,11 @@ function generateTaskForm(task) {
         `);
     } else if (task.atype == "number") {
         answerDiv.innerHTML=(`
-            <input type=number id="inputNumber" name="taskNumber" class="form-control" min="0" onkeydown="return (event.keyCode!=13);" required>
+            <input type=number id="inputNumber" name="taskNumber" class="form-control" min="0" onkeydown="return (event.keyCode!=13 && event.keyCode!=189);">
         `);
     } else if (task.atype == "class") {
         answerDiv.innerHTML=(`
-            <input type=text id="inputText" name="taskClassName" class="form-control" onkeydown="return (event.keyCode!=13);" autocomplete="off" required>
+            <input type=text id="inputText" name="taskClassName" class="form-control" onkeydown="return (event.keyCode!=13 && event.keyCode!=189);" autocomplete="off">
         `);
     }
     
@@ -111,18 +175,19 @@ function validateForm() {
             return false;
         }
     } else if (selectedTask.atype == "number") {
-        if ($('#answerDiv #inputNumber').val().length == 0) {
+        /* if ($('#answerDiv #inputNumber').val().length == 0) {
             $('#validateMsg').html("Complete the task.");
             return false;
-        } else if ($('#answerDiv #inputNumber').val() < 0) {
+        } */
+        if ($('#answerDiv #inputNumber').val() < 0) {
             $('#validateMsg').html("Answer cannot be negative.");
             return false;
         }
     } else if (selectedTask.atype == "class") {
-        if ($('#answerDiv #inputText').val().length < 1) {
+        /* if ($('#answerDiv #inputText').val().length < 3) {
             $('#validateMsg').html("Complete the task.");
             return false;
-        }
+        }*/ 
     }
     //TODO: validate other condition like 1) some interaction with the visualization..
     $('#validateMsg').html("");
@@ -130,50 +195,42 @@ function validateForm() {
 }
 
 function saveData() {
-    csvData[tasknum+1] = new Array();
+    let c = tasknum;
+    if(secondDomain) c+=10;
+    this.csvData[c] = new Array();
     // visualization
-    csvData[tasknum+1][0] = this.vis;
+    this.csvData[c][0] = this.vis;
     // domain
-    csvData[tasknum+1][1] = selectedDomain;
+    this.csvData[c][1] = this.selectedDomain;
     // qtype
-    csvData[tasknum+1][2] = selectedTask.qtype;
+    this.csvData[c][2] = this.selectedTask.qtype;
     // question
-    csvData[tasknum+1][3] = selectedTask.question;
+    this.csvData[c][3] = this.selectedTask.question;
     // user_answer
     if(selectedTask.atype=="number") {
-        csvData[tasknum+1][4] = $('#answerDiv #inputNumber').val();
+        let num_input = $('#answerDiv #inputNumber').val();
+        // checking for null values
+        if(num_input==null) this.csvData[c][4] = "";
+        else this.csvData[c][4] = num_input;
     } else if(selectedTask.atype=="class") {
-        csvData[tasknum+1][4] = $('#answerDiv #inputText').val();
+        let text_input = $('#answerDiv #inputText').val();
+        if(text_input==null) this.csvData[c][4] = "";
+        else this.csvData[c][4] = text_input;
     }
     // correct
     if (selectedTask.atype=="number")
-        if(csvData[tasknum+1][4] == selectedTask.answer) csvData[tasknum+1][5] = 1;
-        else csvData[tasknum+1][5] = 0;
+        if(this.csvData[c][4] == this.selectedTask.answer) this.csvData[c][5] = 1;
+        else this.csvData[c][5] = 0;
     else if(selectedTask.atype=="class") {
-        if(csvData[tasknum+1][4].toLowerCase() == selectedTask.answer.toLowerCase()) csvData[tasknum+1][5] = 1;
-        else csvData[tasknum+1][5] = 0;
+        if(this.csvData[c][4].toLowerCase() == this.selectedTask.answer.toLowerCase()) this.csvData[c][5] = 1;
+        else this.csvData[c][5] = 0;
     }
     // p_id
-    csvData[tasknum+1][6] = "p1";
+    this.csvData[c][6] = getParticipant();
     
     // window.open('data:text/csv;charset=utf-8' + csvData.join(','));
-    csvData[tasknum+1].join(',');
-    csvData[tasknum+1] += "\n";
+    this.csvData[c].join(',');
+    this.csvData[c] += "\n";
 
     console.log('Data added successfully');
 }
-
-
-// //Trying to load data from csv file using PapaParse.. not working yet
-// $.getScript("../../libs/papaparse.min.js", function() {
-//     console.log('Task: PapaParse script loaded.');
-// });
-// function loadTaskData() {
-//     console.log('Task: loadTaskData()');
-//     Papa.parse("https://github.io/sellabae/ontomapvis/userstudy/tasks/tasks-anatomy.csv", {
-//         download: true,
-//         complete: function(results) {
-//             console.log(results);
-//         }
-//     });
-// }

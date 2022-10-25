@@ -22,64 +22,61 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body class="text-unselectable">
 
     <div class="content container-fluid text-center">
+    <form id="start-task">
         <h2 class="py-2 mt-4">Ontology Mapping Visualization</h2>
-        <!-- <div class="m-4">
-            <p class="h5 mb-1">Dataset 1</p>
-            <p id="dataset-description-1" class="mb-1">...</p>
-            <a href="dataset1-baseline.html" class="btn btn-primary">linked</a>
-            <a href="dataset1-matrix.html" class="btn btn-primary">matrix</a>
-        </div>
-        <div class="m-4">
-            <p class="h5 mb-1">Dataset 2</p>
-            <p id="dataset-description-2" class="mb-1">...</p>
-            <a href="dataset2-baseline.html" class="btn btn-primary">linked</a>
-            <a href="dataset2-matrix.html" class="btn btn-primary">matrix</a>
-        </div> -->
-
         <h4 class="py-2 mt-4">Experiment Setup</h4>
-            <select name="visualization" id="vis-options">
-                <option value="" selected disabled>Choose option</option>
-                <option value="userstudy/list_task_conf.html">Indented List - Conference</option>
-                <option value="userstudy/list_task_bio.html">Indented List - Anatomy</option>
-                <option value="userstudy/mat_task_conf.html">Matrix - Conference</option>
-                <option value="userstudy/mat_task_bio.html">Matrix - Anatomy</option>
-            </select>
+        <div id="domain-options">
+            <input type="radio" name="first-domain" id="conf-domain" value="0">Conference</input>
+            <input type="radio" name="first-domain" id="anatomy-domain" value="1">Anatomy</input>
+        </div>
+        <select name="visualization" id="vis-options" required>
+            <option value="" selected disabled>Choose visualization</option>
+            <option value="userstudy/list_task.html">Indented List</option>
+            <option value="userstudy/mat_task.html">Matrix</option>
+        </select>
+        <div id="participant_id" class="py-2 mt-4">
+            <input type="text" id="p_id" name="participantID" class="input-text" onkeydown="return (event.keyCode!=13 && event.keyCode!=189);" placeholder="Participant ID" autocomplete="off" required>
         <!-- <a class="btn btn-primary" href="userstudy/index.html" target="#">Visualization Study</a> -->
         <h4 class="py-1"></h4>
-        <a class="btn btn-primary" id="task-btn" href="" target="#">Begin task</a>
-        <a class="btn btn" id="blank-btn" href="userstudy/blank_form.html" target="#">Blank form</a>
+        <input type="submit" class="btn btn-primary" id="task-btn" href="" target="#" value="Begin task"></input>
+        </form>
+        <a type="button" class="btn btn-info" id="blank-btn" href="userstudy/blank_form.html">Blank form</a>
     </div>
 
     <script>
-        const dataset1 = {
-            domain: 'conference',
-            ont1: edas,
-            ont2: ekaw,
-            maps: mapping_edas_ekaw
-        };
-        const dataset2 = {
-            domain: 'anatomy',
-            ont1: human,
-            ont2: mouse,
-            maps: mapping_human_mouse
-        };
+        // const dataset1 = {
+        //     domain: 'conference',
+        //     ont1: edas,
+        //     ont2: ekaw,
+        //     maps: mapping_edas_ekaw
+        // };
+        // const dataset2 = {
+        //     domain: 'anatomy',
+        //     ont1: human,
+        //     ont2: mouse,
+        //     maps: mapping_human_mouse
+        // };
 
         var vis = document.getElementById('vis-options');
+        //var domain = document.querySelector('input[name="first-domain"]:checked');
+        var confDomain = document.getElementById('conf-domain');
+        var anatomyDomain = document.getElementById('anatomy-domain');
+
         vis.onchange = function () {
-            document.getElementById("task-btn").href = this.value;
+            document.getElementById("start-task").action = this.value
         }
 
-        window.addEventListener('load', function() {
-            console.log("window loaded.");
-            $('#dataset-description-1').html(describeDataset(dataset1));
-            $('#dataset-description-2').html(describeDataset(dataset2));
-            
-        });
+        // window.addEventListener('load', function() {
+        //     console.log("window loaded.");
+        //     $('#dataset-description-1').html(describeDataset(dataset1));
+        //     $('#dataset-description-2').html(describeDataset(dataset2));
+        // });
 
         function describeDataset(dataset)
         {
