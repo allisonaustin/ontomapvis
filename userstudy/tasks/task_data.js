@@ -9,10 +9,10 @@ var taskDatasets = {
         "answer": "10"
       },
       {
-        "qtype": "identifying", // correct mapping - multiple inheritance
+        "qtype": "identifying", // incorrect mapping - multiple inheritance
         "question": "How many classes is \"Author\" in the left ontology mapped to?",
         "atype": "number",
-        "answer": "2"
+        "answer": "1"
       },
       {
         "qtype": "identifying", // incorrect mapping
@@ -21,15 +21,69 @@ var taskDatasets = {
         "answer": "Document"
       },
       {
+        "qtype": "identifying", // correct mapping
+        "question": "Is there a mapping between \"AcademicEvent\" (in the left ontology) and \"Scientific_Event\" (in the right ontology)?",
+        "atype": "y/n",
+        "answer": "Yes"
+      },
+      {
+        "qtype": "validation", // correct mapping
+        "question": "Is \"AcademiaOrganization\" in the left ontology correctly mapped?",
+        "atype": "y/n",
+        "answer": "Yes"
+      },
+      {
         "qtype": "identifying", // missing mapping
-        "question": "Does the mapping from \"Author\" (in the left ontology) to \"Possible_Reviewer\" (in the right ontology) exist in the visualization?",
+        "question": "Can \"Person\" in the left ontology be mapped to another class in the right ontology?",
+        "atype": "y/n",
+        "answer": "Yes"
+      },
+      {
+        "qtype": "creation", // missing mapping
+        "question": "Which class could \"Attendee\" in the left ontology be mapped to in the right ontology?",
         "atype": "class",
+        "answer": "Conference_Participant"
+      },
+      {
+        "qtype": "identifying", // correct mapping
+          "question": "What is \"ConferenceDinner\" in the left ontology mapped to in the right ontology?",
+          "atype": "class",
+          "answer": "Conference_Banquet"
+        },
+      {
+        "qtype": "validation", // incorrect mapping
+        "question": "\"SecurityTopic\" in the left ontology is mapped to \"Research_Topic\" in the right ontology. Is this a correct mapping?",
+        "atype": "y/n",
         "answer": "No"
       },
       {
         "qtype": "validation", // correct mapping
-        "question": "Is \"AcademicEvent\" in the left ontology is correctly mapped?",
+        "question": "\"Place\" in the left ontology is mapped to \"Location\" in the right ontology. Is this a correct mapping?",
+        "atype": "y/n",
+        "answer": "Yes"
+      },
+      {
+        "qtype": "identifying", // incorrect mapping
+        "question": "Is the mapping from \"RejectedPaper\" in the left ontology to \"Assigned_Paper\" in the right ontology correct?",
+        "atype": "y/n",
+        "answer": "No"
+      },
+      {
+        "qtype": "validation", // incorrect mapping
+        "question": "Is the mapping from \"IndustryOrganization\" in the left ontology to \"Organisation\" in the right ontology correct?",
+        "atype": "y/n",
+        "answer": "No"
+      },
+      {
+        "qtype": "creation", // missing mapping
+        "question": " What class can \"AcceptedPaper\" in the left ontology be mapped to in the right ontology?",
         "atype": "class",
+        "answer": "Accepted_Paper"
+      },
+      {
+        "qtype": "identifying", // missing mapping
+        "question": "Is there a mapping that should exist between \"Workshop\” in the left ontology to another class in the right ontology?",
+        "atype": "y/n",
         "answer": "Yes"
       },
       {
@@ -37,25 +91,7 @@ var taskDatasets = {
         "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"x\",\"y\")",
         "atype": "class",
         "answer": "" // multiple
-      },
-      {
-        "qtype": "creation", // incorrect mapping
-        "question": "\"SecurityTopic\"-->\"Research_Topic\" Are there any other mappings that should be created between the given ontology pair but are currently absent from the visualization?",
-        "atype": "class",
-        "answer": "Yes"
-      },
-      {
-        "qtype": "creation", // missing mapping
-        "question": "Can \"Workshop\" be mapped to another class in the right ontology?",
-        "atype": "class",
-        "answer": "Yes"
-      },
-      {
-        "qtype": "creation", // creation
-        "question": "Which class could \"Workshop\" be mapped to in the right ontology?",
-        "atype": "class",
-        "answer": "workshop"
-      },
+      }
     ]
   },
   anatomy:  {
@@ -80,8 +116,8 @@ var taskDatasets = {
         "answer": "visceral organ system"
       },
       {
-        "qtype": "identifying", // incorrect mapping
-        "question": "Does the mapping from \"Heart\" (in the left ontology) to \"muscle\" (in the right ontology) exist in the visualization?",
+        "qtype": "identifying", // missing mapping
+        "question": "Is there a mapping between \"Blood\" (in the left ontology) and \"blood\" (in the right ontology)?",
         "atype": "y/n",
         "answer": "No"
       },
@@ -93,25 +129,25 @@ var taskDatasets = {
       },
       {
         "qtype": "identifying", // missing mapping
-        "question": "Can \"Joint\" be mapped to another class in the right ontology?",
+        "question": "Can \"Joint\" in the left ontology be mapped to another class in the right ontology?",
         "atype": "y/n",
         "answer": "Yes"
       },
       {
         "qtype": "creation", // missing mapping
-        "question": "Which class could \"Heart\" be mapped to in the right ontology?",
+        "question": "Which class could \"Heart\" in the left ontology be mapped to in the right ontology?",
         "atype": "class",
-        "answer": "joint"
+        "answer": "heart"
       },
       {
-      "qtype": "identifying", // correct mapping
+        "qtype": "identifying", // correct mapping
         "question": "What is \"Skull\" in the left ontology mapped to in the right ontology?",
         "atype": "class",
         "answer": "cranium"
       },
       {
         "qtype": "validation", // incorrect mapping
-        "question": "\"Urinary_System_Part\" is mapped to \"muscle\". Is this a correct mapping?",
+        "question": "\"Urinary_System_Part\" in the left ontology is mapped to \"muscle\" in the right ontology. Is this a correct mapping?",
         "atype": "y/n",
         "answer": "No"
       },

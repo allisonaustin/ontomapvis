@@ -116,7 +116,7 @@ function nextTask() {
                 // downloading data
                 window.open('data:text/csv;charset=utf-8' + csvData.join(','));
                 document.getElementById("submit").type="submit";
-                document.getElementById("taskForm").action = "/tasks/blank_form.html";
+                document.getElementById("taskForm").action = "closing_form.html";
                 return valid;
             }
         } else if(tasknum == taskset.tasks.length-1 && secondDomain) {
@@ -144,7 +144,7 @@ function generateTaskForm(task) {
     var answerDiv = document.getElementById("answerDiv");
     if (task.atype == "y/n") {
         answerDiv.innerHTML=(`
-            <select class="task-answer form-control" id="inputSelect" name="taskSelect" required>
+            <select class="task-answer form-control" id="inputSelect" name="taskSelect">
                 <option selected>Choose...</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -156,7 +156,7 @@ function generateTaskForm(task) {
         `);
     } else if (task.atype == "class") {
         answerDiv.innerHTML=(`
-            <input type=text id="inputText" name="taskClassName" class="form-control" onkeydown="return (event.keyCode!=13 && event.keyCode!=189);" autocomplete="off">
+            <input type=text id="inputText" name="taskClassName" class="form-control" onkeydown="return (event.keyCode!=13);" autocomplete="off">
         `);
     }
     
@@ -171,8 +171,8 @@ function validateForm() {
         var select = $('select.task-answer').val();
         console.log('Task: select:', select);
         if (select != "yes" && select != "no") {
-            $('#validateMsg').html("Complete the task.");
-            return false;
+            /* $('#validateMsg').html("Complete the task.");
+            return false; */
         }
     } else if (selectedTask.atype == "number") {
         /* if ($('#answerDiv #inputNumber').val().length == 0) {
@@ -196,7 +196,7 @@ function validateForm() {
 
 function saveData() {
     let c = tasknum;
-    if(secondDomain) c+=10;
+    if(secondDomain) c+=15;
     this.csvData[c] = new Array();
     // visualization
     this.csvData[c][0] = this.vis;
