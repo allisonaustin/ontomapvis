@@ -9,12 +9,21 @@ var tasknum=0;
 var d1;
 var d2;
 var csvData;
+var timeData;
 var secondDomain;
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function(event) {
     console.log("Task: Ready to generate form!");
+    // saving the timestamp for task submission
+    document.getElementById('submit').addEventListener("click", function(event) {
+        var valid = validateForm();
+        if(!secondDomain && valid) timeData[tasknum+1] = event.timeStamp;
+        else timeData[tasknum+16] = event.timeStamp;
+    });
 
-    csvData = new Array(20);
+    csvData = new Array(30);
+    timeData = new Array(30);
+    timeData[0] = event.timeStamp;
     getDomainOrder();
     selectedDomain = d1;
     initCSV(csvData);
@@ -154,7 +163,7 @@ function generateTaskForm(task) {
         answerDiv.innerHTML=(`
             <input type=number id="inputNumber" name="taskNumber" class="form-control" min="0" onkeydown="return (event.keyCode!=13 && event.keyCode!=189);">
         `);
-    } else if (task.atype == "class") {
+    } else if (task.atype == "class" || task.atype == "pairs") {
         answerDiv.innerHTML=(`
             <input type=text id="inputText" name="taskClassName" class="form-control" onkeydown="return (event.keyCode!=13);" autocomplete="off">
         `);
@@ -206,28 +215,70 @@ function saveData() {
     this.csvData[c][2] = this.selectedTask.qtype;
     // question
     this.csvData[c][3] = this.selectedTask.question;
-    // user_answer
-    if(selectedTask.atype=="number") {
-        let num_input = $('#answerDiv #inputNumber').val();
-        // checking for null values
-        if(num_input==null) this.csvData[c][4] = "";
-        else this.csvData[c][4] = num_input;
-    } else if(selectedTask.atype=="class") {
-        let text_input = $('#answerDiv #inputText').val();
-        if(text_input==null) this.csvData[c][4] = "";
-        else this.csvData[c][4] = text_input;
-    }
-    // correct
-    if (selectedTask.atype=="number")
-        if(this.csvData[c][4] == this.selectedTask.answer) this.csvData[c][5] = 1;
-        else this.csvData[c][5] = 0;
-    else if(selectedTask.atype=="class") {
-        if(this.csvData[c][4].toLowerCase() == this.selectedTask.answer.toLowerCase()) this.csvData[c][5] = 1;
-        else this.csvData[c][5] = 0;
+    // user answer
+    var text_input;
+    switch(selectedTask.atype) {
+        case "number":
+            let num_input = $('#answerDiv #inputNumber').val();
+            // checking for null values
+            if(num_input==null) {
+                this.csvData[c][4] = "";
+            } else {
+                this.csvData[c][4] = num_input;
+            }
+            // checking for correct answer
+            if(this.csvData[c][4] == this.selectedTask.answer) {
+                this.csvData[c][5] = 1;
+            } else {
+                this.csvData[c][5] = 0;
+            }
+            break;
+        case "class":
+            text_input = $('#answerDiv #inputText').val();
+            if(text_input==null) {
+                this.csvData[c][4] = "";
+            } else {
+                this.csvData[c][4] = text_input;
+            }
+            // correct
+            if(this.csvData[c][4].toLowerCase() == this.selectedTask.answer.toLowerCase()) {
+                this.csvData[c][5] = 1;
+            } else {
+                this.csvData[c][5] = 0;
+            }
+            break;
+        case "y/n":
+            let menu_input = $('select.task-answer').val();
+            if(menu_input=="Choose...") {
+                this.csvData[c][4] = ""; // no selection
+            } else {
+                this.csvData[c][4] = menu_input;
+            }
+            // correct
+            if(this.csvData[c][4].toLowerCase() == this.selectedTask.answer.toLowerCase()) {
+                this.csvData[c][5] = 1;
+            } else {
+                this.csvData[c][5] = 0;
+            }
+            break;
+        case "pairs":
+            this.csvData[c][3] = this.csvData[c][3].replace(',',''); // removing comma for later join
+            console.log(this.csvData[c][3]);
+            text_input = $('#answerDiv #inputText').val();
+            text_input = text_input.replace('\s/g', ''); // removing spaces
+            if(text_input in this.selectedTask.answer) {
+                this.csvData[c][5] = 1;
+            } else {
+                this.csvData[c][5] = 0;
+            }
+            break;
     }
     // p_id
     this.csvData[c][6] = getParticipant();
-    
+    // finish timestamp
+    this.csvData[c][7] = timeData[c+1];
+    console.log(timeData[c+1]);
+
     // window.open('data:text/csv;charset=utf-8' + csvData.join(','));
     this.csvData[c].join(',');
     this.csvData[c] += "\n";

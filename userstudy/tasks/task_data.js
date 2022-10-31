@@ -21,7 +21,7 @@ var taskDatasets = {
         "answer": "Document"
       },
       {
-        "qtype": "identifying", // correct mapping
+        "qtype": "validation", // correct mapping
         "question": "Is there a mapping between \"AcademicEvent\" (in the left ontology) and \"Scientific_Event\" (in the right ontology)?",
         "atype": "y/n",
         "answer": "Yes"
@@ -76,7 +76,7 @@ var taskDatasets = {
       },
       {
         "qtype": "creation", // missing mapping
-        "question": " What class can \"AcceptedPaper\" in the left ontology be mapped to in the right ontology?",
+        "question": "What class can \"AcceptedPaper\" in the left ontology be mapped to in the right ontology?",
         "atype": "class",
         "answer": "Accepted_Paper"
       },
@@ -88,9 +88,9 @@ var taskDatasets = {
       },
       {
         "qtype": "creation", // missing mapping
-        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"x\",\"y\")",
-        "atype": "class",
-        "answer": "" // multiple
+        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"x\,y\" where x is the class from the left ontology and y is the class from the right ontology)",
+        "atype": "pairs",
+        "answer": ["Organization,Organisation", "Author,Paper_Author","Topic,Research_Topic","Document,Document","RejectedPaper,Rejected_Paper","AcceptedPaper,Accepted_Paper","Workshop,Workshop","Person,Person","Paper,Paper","Attendee,Conference_Participant"] // multiple, QUESTION: should we remove the ones already addressed by other tasks???
       }
     ]
   },
@@ -183,9 +183,9 @@ var taskDatasets = {
       },
       {
         "qtype": "creation", // missing mapping
-        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"x\",\"y\")",
-        "atype": "class",
-        "answer": "" // multiple
+        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"x\,y\" where x is the class from the left ontology and y is the class from the right ontology)",
+        "atype": "pairs",
+        "answer": ["nasalmucus,Nasal_Mucus","muscle,Muscle","cartilage,Cartilage","cheek,Cheek","bodyfluid/substance,Body_Fluid_or_Substance","joint,Joint","blood,Blood","lip,Lip","arm,Arm","heart,Heart"] // multiple
       }
     ]
   }
