@@ -2,7 +2,7 @@ qtype,question,atype,answer
 identifying,How many mappings are shown in the visualization in total?,number,10
 indentifying,How many classes is "Skin" in the left ontology mapped to?,number,1
 identifying,What is "Viscera" in the left ontology mapped to in the right ontology?",class,visceral organ system
-validation,Is there a mapping between "Blood" (in the left ontology) and "blood" (in the right ontology)?,y/n,No
+validation,Is there a mapping between "Blood" in the left ontology and "blood" in the right ontology?,y/n,No
 validation,Is "Cartilage" in the left ontology correctly mapped?,y/n,No
 identifying,Can "Joint" in the left ontology be mapped to another class in the right ontology?,y/n,Yes
 creation,Which class could "Heart" in the left ontology be mapped to in the right ontology?,class,heart
@@ -13,4 +13,4 @@ identifying,Is the mapping from "Mucus" in the left ontology to "nasal mucus" in
 validation,Is the mapping from "IndustryOrganization" in the left ontology to "Organisation" in the right ontology correct?,y/n,No
 creation,What class can "Lip" in the left ontology be mapped to in the right ontology?,class,lip
 identifying,Is there a mapping that should exist between "Arm" in the left ontology to another class in the right ontology?,y/n,Yes
-creation,Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. "x,y" where x is the class from the left ontology and y is the class from the right ontology),pairs
+creation,Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. "a=b,x=y,..." where a is the class from the left ontology and b is the class from the right ontology),pairs

@@ -6,12 +6,14 @@ var taskDatasets = {
         "qtype": "identifying", // correct mapping
         "question": "How many mappings are shown in the visualization in total?",
         "atype": "number",
+        "options": ["6", "9", "10", "11"],
         "answer": "10"
       },
       {
         "qtype": "identifying", // incorrect mapping - multiple inheritance
         "question": "How many classes is \"Author\" in the left ontology mapped to?",
         "atype": "number",
+        "options":["0", "1", "2", "3"],
         "answer": "1"
       },
       {
@@ -22,7 +24,7 @@ var taskDatasets = {
       },
       {
         "qtype": "validation", // correct mapping
-        "question": "Is there a mapping between \"AcademicEvent\" (in the left ontology) and \"Scientific_Event\" (in the right ontology)?",
+        "question": "Is there a mapping between \"AcademicEvent\" in the left ontology and \"Scientific_Event\" in the right ontology?",
         "atype": "y/n",
         "answer": "Yes"
       },
@@ -88,10 +90,10 @@ var taskDatasets = {
       },
       {
         "qtype": "creation", // missing mapping
-        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"x\,y\" where x is the class from the left ontology and y is the class from the right ontology)",
+        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"a=b,x=y,...\" where a is the class from the left ontology and b is the class from the right ontology)",
         "atype": "pairs",
-        "answer": ["Organization,Organisation", "Author,Paper_Author","Topic,Research_Topic","Document,Document","RejectedPaper,Rejected_Paper","AcceptedPaper,Accepted_Paper","Workshop,Workshop","Person,Person","Paper,Paper","Attendee,Conference_Participant"] // multiple, QUESTION: should we remove the ones already addressed by other tasks???
-      }
+        "answer": ["Organization=Organisation", "Author=Paper_Author","Topic=Research_Topic","Document=Document","RejectedPaper=Rejected_Paper","AcceptedPaper=Accepted_Paper","Workshop=Workshop","Person=Person","Paper=Paper","Attendee=Conference_Participant"] // multiple
+      },
     ]
   },
   anatomy:  {
@@ -101,12 +103,14 @@ var taskDatasets = {
         "qtype": "identifying", // correct mapping
         "question": "How many mappings are shown in the visualization in total?",
         "atype": "number",
+        "options": ["4", "8", "10", "12"],
         "answer": "10"
       },
       {
         "qtype": "identifying", // correct mapping
         "question": "How many classes is \"Skin\" in the left ontology mapped to?",
         "atype": "number",
+        "options": ["0", "1", "2", "4"],
         "answer": "1"
       },
       {
@@ -117,7 +121,7 @@ var taskDatasets = {
       },
       {
         "qtype": "identifying", // missing mapping
-        "question": "Is there a mapping between \"Blood\" (in the left ontology) and \"blood\" (in the right ontology)?",
+        "question": "Is there a mapping between \"Blood\" in the left ontology and \"blood\" in the right ontology?",
         "atype": "y/n",
         "answer": "No"
       },
@@ -183,10 +187,10 @@ var taskDatasets = {
       },
       {
         "qtype": "creation", // missing mapping
-        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"x\,y\" where x is the class from the left ontology and y is the class from the right ontology)",
+        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"a=b,x=y,...\" where a is the class from the left ontology and b is the class from the right ontology)",
         "atype": "pairs",
-        "answer": ["nasalmucus,Nasal_Mucus","muscle,Muscle","cartilage,Cartilage","cheek,Cheek","bodyfluid/substance,Body_Fluid_or_Substance","joint,Joint","blood,Blood","lip,Lip","arm,Arm","heart,Heart"] // multiple
-      }
+        "answer": ["Nasal_Mucus=nasalmucus","Muscle=muscle","Cartilage=cartilage","Cheek=cheek","Body_Fluid_or_Substance=bodyfluid/substance","Joint=joint","Blood=blood","Lip=lip","Arm=arm","Heart=heart"] // multiple
+      },
     ]
   }
 };
