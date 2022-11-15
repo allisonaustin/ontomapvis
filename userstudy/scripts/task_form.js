@@ -19,7 +19,7 @@ window.addEventListener('load', function(event) {
 
     csvData = new Array(30);
     timeData = new Array(30);
-    timeData[1] = event.timeStamp;
+    timeData[1] = event.timeStamp; // start
     this.selectedDomain = getDomain();
     initCSV(csvData);
     
@@ -53,8 +53,8 @@ function getDomain() {
   var queryString = window.location.search;
   var urlParams = new URLSearchParams(queryString);
   var domain = urlParams.get('domain');
-  if(domain=='0') return 0;
-  else if(domain=='1') return 1;
+  if(domain=='Conference') return 0;
+  else if(domain=='Anatomy') return 1;
 }
 
 function setVis(vis) {
@@ -263,7 +263,7 @@ function saveData() {
             break;
     }
     // p_id
-    this.csvData[c][6] = getParticipant();
+    this.csvData[c][6] = this.participant;
     // finish timestamp
     this.csvData[c][7] = timeData[c];
 
