@@ -84,7 +84,7 @@ var taskDatasets = {
       },
       {
         "qtype": "identifying", // missing mapping
-        "question": "Can \"Workshop\” (in the left ontology) be mapped to another class (in the right ontology)?",
+        "question": "Can \"Workshop\" (in the left ontology) be mapped to another class (in the right ontology)?",
         "atype": "y/n",
         "answer": "Yes"
       },
@@ -181,7 +181,7 @@ var taskDatasets = {
       },
       {
         "qtype": "identifying", // missing mapping
-        "question": "Can \”Arm\” (in the left ontology) be mapped to another class (in the right ontology)?",
+        "question": "Can \"Arm\" (in the left ontology) be mapped to another class (in the right ontology)?",
         "atype": "y/n",
         "answer": "Yes"
       },

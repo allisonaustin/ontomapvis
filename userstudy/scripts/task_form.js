@@ -11,15 +11,10 @@ var timeData;
 
 window.addEventListener('load', function(event) {
     console.log("Task: Ready to generate form!");
-    // saving the timestamp for task submission
-    document.getElementById('submit').addEventListener("click", function(event) {
-        var valid = validateForm();
-        if(valid) timeData[tasknum] = event.timeStamp;
-    });
 
     csvData = new Array(30);
     timeData = new Array(30);
-    timeData[1] = event.timeStamp; // start
+    startTime = new Date().getTime();
     this.selectedDomain = getDomain();
     initCSV(csvData);
     
@@ -80,16 +75,16 @@ function getTaskset(selectedDomain) {
 }
 
 function assignOneTask(taskset, n) {
-    console.log(`Task: '${taskset.domain}' domain selected as a task dataset.`);
-    //TODO: Control this randomly assigned task to a proper one
-    //let rd = Math.floor(Math.random() * taskset.tasks.length);
-    //console.log('Task: random number ' + rd);
+    //console.log(`Task: '${taskset.domain}' domain selected as a task dataset.`);
     return taskset.tasks[n];
 }
 
 function nextTask() {
     var valid = validateForm();
     if(valid) {
+        // task submission timestamp
+        timeData[tasknum] = new Date().getTime() - startTime;
+        console.log("Task", tasknum, "submission timestamp:",timeData[tasknum])
         saveData();
         if(tasknum==taskset.tasks.length) {
             // downloading data
@@ -264,8 +259,8 @@ function saveData() {
     }
     // p_id
     this.csvData[c][6] = this.participant;
-    // finish timestamp
-    this.csvData[c][7] = timeData[c];
+    // timestamp
+    this.csvData[c][7] = timeData[c]; // end
 
     // window.open('data:text/csv;charset=utf-8' + csvData.join(','));
     this.csvData[c].join(',');
