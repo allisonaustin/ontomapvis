@@ -35,12 +35,11 @@
 .svgdiv {
   width: 100%;
   height: 700px;
-  overflow: auto;
+  overflow: scroll;
   border: 1px solid #ccc;
   border-radius: 2px;
   background-color: white;
   margin-bottom: 20px;
-  position:fixed;
 }
 
 /* indented tree styling */
