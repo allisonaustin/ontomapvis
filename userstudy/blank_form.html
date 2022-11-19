@@ -16,11 +16,24 @@
     <link rel="stylesheet" href="styles/style_task.css"> <!-- task form within userstudy -->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script>
+        const countdown = async () => {
+            const startTime = Date.now();
+            const tenSeconds = 10000;
+            const endTime = startTime + tenSeconds;
+            while (Date.now() < endTime) {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            // closing window
+            window.open('', '_self').close();
+        }
+        countdown();
+    </script>
 </head>
 
 <body class="text-unselectable p-4">
     <div class="content container-fluid">
-
         <!-- Task Area -->
         <form id="taskDiv">
             <div class="mb-4 px-4 py-3" id="taskDiv">

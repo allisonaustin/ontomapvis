@@ -90,7 +90,7 @@ var taskDatasets = {
       },
       {
         "qtype": "creation", // missing mapping
-        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"a=b,x=y,...\" where a is the class from the left ontology and b is the class from the right ontology)",
+        "question": "Is there any other mapping(s) that should be created between the ontologies but is currently absent from the visualization? List as many as you can (ex. \"a=b,x=y,...\" where a is the class from the left ontology and b is the class from the right ontology)",
         "atype": "pairs",
         "answer": ["Organization=Organisation", "Author=Paper_Author","Topic=Research_Topic","Document=Document","RejectedPaper=Rejected_Paper","AcceptedPaper=Accepted_Paper","Workshop=Workshop","Person=Person","Paper=Paper","Attendee=Conference_Participant"] // multiple
       },
@@ -187,7 +187,7 @@ var taskDatasets = {
       },
       {
         "qtype": "creation", // missing mapping
-        "question": "Are there any other mappings that should be created between the ontologies but are currently absent from the visualization? List as many missing mappings as you can (ex. \"a=b,x=y,...\" where a is the class from the left ontology and b is the class from the right ontology)",
+        "question": "Is there any other mapping(s) that should be created between the ontologies but is currently absent from the visualization? List as many as you can (ex. \"a=b,x=y,...\" where a is the class from the left ontology and b is the class from the right ontology)",
         "atype": "pairs",
         "answer": ["Nasal_Mucus=nasalmucus","Muscle=muscle","Cartilage=cartilage","Cheek=cheek","Body_Fluid_or_Substance=bodyfluid/substance","Joint=joint","Blood=blood","Lip=lip","Arm=arm","Heart=heart"] // multiple
       },
