@@ -80,7 +80,7 @@ function drawMatrixSvg()
     console.log("drawMatrixSvg()");
     
     const svg = d3.select("#matrix-svg")
-        .attr('width', 1950).attr('height', 2300);
+        .attr('width', 2300).attr('height', 2300);
 
     const gPos = {x: treeWidth+10, y: treeWidth-70};
     const g = svg.append('g')
