@@ -65,7 +65,7 @@ var taskDatasets = {
         "answer": "Yes"
       },
       {
-        "qtype": "identifying", // incorrect mapping
+        "qtype": "validation", // incorrect mapping
         "question": "\"RejectedPaper\" (in the left ontology) is mapped to \"Assigned_Paper\" (in the right ontology). Is this correct?",
         "atype": "y/n",
         "answer": "No"
@@ -92,7 +92,7 @@ var taskDatasets = {
         "qtype": "creation", // missing mapping
         "question": "Is there any other mapping(s) that should be created between the ontologies but is currently absent from the visualization? List as many as you can (ex. \"AcademicEvent=Scientific_Event, SlideSet=Document,...\").",
         "atype": "pairs",
-        "answer": ["Organization=Organisation", "Author=Paper_Author","Topic=Research_Topic","Document=Document","RejectedPaper=Rejected_Paper","AcceptedPaper=Accepted_Paper","Workshop=Workshop","Person=Person","Paper=Paper","Attendee=Conference_Participant"] // multiple
+        "answer": ["ConferenceDinner=Conference_Banquet","AcademicEvent=Scientific_Event","Place=Location","AcademiaOrganization=Academic_Institution","ConferenceEvent=Event","Organization=Organisation", "Author=Paper_Author","Topic=Research_Topic","Document=Document","RejectedPaper=Rejected_Paper","AcceptedPaper=Accepted_Paper","Workshop=Workshop","Person=Person","Paper=Paper","Attendee=Conference_Participant"] // multiple
       },
     ]
   },
@@ -120,7 +120,7 @@ var taskDatasets = {
         "answer": "visceral organ system"
       },
       {
-        "qtype": "identifying", // missing mapping
+        "qtype": "validation", // missing mapping
         "question": "Is there a mapping between \"Blood\" (in the left ontology) and \"blood\" (in the right ontology)?",
         "atype": "y/n",
         "answer": "No"
@@ -162,7 +162,7 @@ var taskDatasets = {
         "answer": "No"
       },
       {
-        "qtype": "identifying", // correct mapping
+        "qtype": "validation", // correct mapping
         "question": "\"Skin\" (in the left ontology) is mapped to \"skin\" (in the right ontology). Is this correct?",
         "atype": "y/n",
         "answer": "Yes"
@@ -189,7 +189,7 @@ var taskDatasets = {
         "qtype": "creation", // missing mapping
         "question": "Is there any other mapping(s) that should be created between the ontologies but is currently absent from the visualization? List as many as you can (ex. \"Skin=skin, Skull=cranium,...\").",
         "atype": "pairs",
-        "answer": ["Nasal_Mucus=nasalmucus","Muscle=muscle","Cartilage=cartilage","Cheek=cheek","Body_Fluid_or_Substance=bodyfluid/substance","Joint=joint","Blood=blood","Lip=lip","Arm=arm","Heart=heart"] // multiple
+        "answer": ["eyelash=Eyelash","cranium=Skull","leg=Leg","skin=Skin","visceral organ system=Vescera","Nasal_Mucus=nasalmucus","Muscle=muscle","Cartilage=cartilage","Cheek=cheek","Body_Fluid_or_Substance=bodyfluid/substance","Joint=joint","Blood=blood","Lip=lip","Arm=arm","Heart=heart"] // multiple
       },
     ]
   }
